@@ -1,0 +1,9 @@
+Компонент списка задач
+<div class="header-users">
+    <div class="header-users__items" *ngFor="let todo of todos" >
+
+        <app-todo-card [todo]="todo" (deleteTodo)="deleteTodo ($event)"></app-todo-card>
+   
+    </div>
+
+</div>

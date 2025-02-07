@@ -11,7 +11,7 @@ import { UsersListComponent } from './users-list/users-list.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgIf, NgFor, HeaderComponent, UsersListComponent, ],
+  imports: [RouterOutlet, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

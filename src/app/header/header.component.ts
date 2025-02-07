@@ -5,6 +5,7 @@ import { RouterLink } from "@angular/router";
 
 const AboutCompanyFunction = (text: string) => text;
 const AboutCompany = AboutCompanyFunction('О Компании');
+
 const NavItems = [
   'Каталог',
   'Стройматериалы',
