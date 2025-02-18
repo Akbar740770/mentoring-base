@@ -1,0 +1,29 @@
+<h1 style="display: flex; justify-content: center;">CREATE USER FORM</h1>
+
+<div style="font-family: Inter; display: flex; justify-content: center;">
+
+<form 
+    style="display: flex; flex-direction: column;" 
+    [formGroup]="form"   
+    (ngSubmit)="submitForm()" >
+
+    <label>Имя:</label>
+    <input type="text" class="form-input" formControlName="name">
+
+    <label>Почта:</label>
+    <input type="text" class="form-input" formControlName="email">
+
+    <label>Сайт:</label>
+    <input type="text" class="form-input" formControlName="website">
+
+    <label>Имя Компании :</label>
+    <input type="text" class="form-input" formControlName="companyName">
+
+    <button (click)="submitForm()" [disabled]="form.invalid" type="button" style="height: 50px;">
+        Добавить пользователья
+    </button>  
+</form>
+</div>
+
+
+  

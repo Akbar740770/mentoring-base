@@ -1,0 +1,28 @@
+<h1 style="display: flex; justify-content: center;">CREATE TODOS FORM</h1>
+
+<div style="font-family: Inter; display: flex; justify-content: center;">
+
+<form 
+    style="display: flex; flex-direction: column;" 
+    [formGroup]="formTodo"   
+    (ngSubmit)="submitFormTodo()" >
+
+    <label>Текст задачи:</label>
+    <input type="text" class="form-input" formControlName="title">
+
+    <label>Автор задачи:</label>
+    <input type="text" class="form-input" formControlName="userId">
+
+    <label>Задача завершена:</label>
+    <input type="text" class="form-input" formControlName="completed">
+
+
+
+    <button (click)="submitFormTodo()" [disabled]="formTodo.invalid" type="button" style="height: 50px;">
+        Добавить Задачу
+    </button>  
+</form>
+</div>
+
+
+  

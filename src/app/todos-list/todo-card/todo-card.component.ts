@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Todo } from "../todos-list.component";
 
 @Component({
   selector: 'app-todo-card',
@@ -8,6 +9,10 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
   imports: [],
 })
 export class TodoCardComponent {
+form: any;
+submitForm() {
+throw new Error('Method not implemented.');
+}
   @Input()
   todo: any;
 
