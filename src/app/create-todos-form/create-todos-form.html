@@ -5,22 +5,35 @@
 <form 
     style="display: flex; flex-direction: column;" 
     [formGroup]="formTodo"   
-    (ngSubmit)="submitFormTodo()" >
-
-    <label>Текст задачи:</label>
-    <input type="text" class="form-input" formControlName="title">
-
-    <label>Автор задачи:</label>
-    <input type="text" class="form-input" formControlName="userId">
-
-    <label>Задача завершена:</label>
-    <input type="text" class="form-input" formControlName="completed">
+    >
 
 
+    
+    <mat-form-field class="mat">
+        <mat-label>Текст задачи:</mat-label>
+        <input matInput formControlName="title">
+        <mat-error>Некоректный текст задачи</mat-error>
+    </mat-form-field>
 
-    <button (click)="submitFormTodo()" [disabled]="formTodo.invalid" type="button" style="height: 50px;">
-        Добавить Задачу
-    </button>  
+    
+    <mat-form-field class="mat">
+        <mat-label>Автор задачи:</mat-label>
+        <input matInput formControlName="userId">
+        <mat-error>Некоректный автор задачи</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field class="mat">
+        <mat-label>Задача завершена:</mat-label>
+        <input matInput formControlName="completed">
+        <mat-error>Некоректный текст </mat-error>
+    </mat-form-field>
+
+    <button type="submit" (click)="submitFormTodo()" matIconSuffix mat-raised-button [disabled]="formTodo.invalid">Добавить Задачу
+        <mat-icon>add</mat-icon> 
+    </button>
+
+   
+
 </form>
 </div>
 

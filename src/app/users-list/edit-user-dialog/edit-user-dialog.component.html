@@ -1,9 +1,7 @@
-<h1 style="display: flex; justify-content: center;">CREATE USER FORM</h1>
 
-<div style="font-family: Inter; display: flex; justify-content: center;">
 
 <form 
-    style="display: flex; flex-direction: column;" 
+    style="display: flex; flex-direction: column; padding: 50px;" 
     [formGroup]="form"   
 >
 
@@ -31,14 +29,10 @@
         <mat-error>Некоректный companyName</mat-error>
     </mat-form-field>
 
-    <button (click)="submitForm()" matIconSuffix mat-raised-button [disabled]="form.invalid">Добавить пользователья
+    <button matIconSuffix mat-raised-button [disabled]="form.invalid" [mat-dialog-close]="userWithUpdatedFields" >Редактировать пользователья
         <mat-icon>add</mat-icon> 
     </button>
 
-   
-
 </form>
-</div>
 
-
-  
+<!-- (click)="submitForm()" -->

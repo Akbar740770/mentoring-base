@@ -11,6 +11,7 @@
     </nav>
     <button (click)="isShowCatalog = !isShowCatalog">Скрыть/Показать каталог</button>
     <button type="button" (click)="changeMenuText()">Изменить текст</button>
+    <h5 style="margin-left: 50px;">Сегодняшняя дата: {{ today | data }}</h5>
   </div>
 
   <div class="header-right">
@@ -26,8 +27,8 @@
            <button class="header-button-users" routerLink ="todos" type="button">TODOS</button>
 
     </div>
-    <div class="header-korzina">
-      <button type="button" class="header-korzina-button">
+    <div class="header-korzina" >
+      <button type="button" class="header-korzina-button" appHoverColor>
         <img src="/assets/cart.svg" alt="" />
         <span>Пусто</span>
         

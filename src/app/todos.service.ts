@@ -24,12 +24,21 @@ export class TodosService {
     );
   }
 
+   createTodo(user: Todo) {
+      const existingUser = this.TodosSubject$.value.find(
+        (currentElement) => currentElement.userId === user.userId
+      );
   
+      if (existingUser !== undefined) {
+        alert('ТАКОЙ EMAIL УЖЕ ЗАРЕГИСТРИРОВАН');
+      } else {
+        this.TodosSubject$.next([...this.TodosSubject$.value, user]);
+        alert('НОВЫЙ ПОЛЬЗАВАТЕЛЬ УСПЕШНО ДОБАВЛЕН');
+      }
+    }
 
 
-  createTodo(todo: Todo) {
-    this.TodosSubject$.next([...this.TodosSubject$.value, todo]);
-  }
+ 
 
   deleteUser(id: number) {
     this.TodosSubject$.next(
@@ -44,3 +53,7 @@ export class TodosService {
 
   }
 }
+
+ // createTodo(todo: Todo) {
+  //   this.TodosSubject$.next([...this.TodosSubject$.value, todo]);
+  // }

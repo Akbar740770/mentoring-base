@@ -1,7 +1,8 @@
 import { NgFor, NgIf } from "@angular/common";
 import { Component } from "@angular/core";
 import { RouterLink } from "@angular/router";
-
+import { DataPipe } from "../pipes/data.pipe";
+import { HoverColorDirective } from "../directives/highlight.directive";
 
 const AboutCompanyFunction = (text: string) => text;
 const AboutCompany = AboutCompanyFunction('О Компании');
@@ -23,13 +24,13 @@ const upperCaseMenuItems = NavItems.map((items) => {
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports:[NgFor, NgIf,RouterLink],
+  imports: [NgFor, NgIf, RouterLink, DataPipe, HoverColorDirective],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-
-
 export class HeaderComponent {
+  today: number = Date.now();
+
   changeMenuText() {
     this.NavItems2 = upperCaseMenuItems.map((NavItem) =>
       this.isUpperCase ? NavItem.toLowerCase() : NavItem.toUpperCase()
@@ -43,7 +44,7 @@ export class HeaderComponent {
   readonly hiderItem3 = 'Каталог';
 
   NavItems2 = upperCaseMenuItems;
- 
+
   isUpperCase = true;
   readonly NavItems1 = NavItems;
 }

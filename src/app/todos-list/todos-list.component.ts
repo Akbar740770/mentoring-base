@@ -5,7 +5,7 @@ import { TodosApiService } from '../todos-api.service';
 import { TodosService } from '../todos.service';
 import { CreatetodosFormComponent } from "../create-todos-form/create-todos-form.component";
 export interface Todo {
-  Userid: number;
+  userId: number;
   id: number;
   title: string;
   completed: boolean;
@@ -64,7 +64,7 @@ export class TodosListComponent {
     this.TodosService.createTodo({
       id: new Date().getTime(),
       title: formItem.title,
-      Userid: formItem.Userid,
+      userId: formItem.userId,
       completed: formItem.completed,
     });
   }

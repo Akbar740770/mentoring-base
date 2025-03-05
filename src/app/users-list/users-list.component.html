@@ -1,11 +1,15 @@
-<app-create-user-form (createUserOuput)="createUser($event)"></app-create-user-form>
-
-<div class="header-users">
-  <div class="header-users__items" *ngFor="let items of usersService.usersSubject | async">
+<app-create-user-form  (createUserOuput)="createUser($event)"></app-create-user-form>
    
-    <app-user-card 
-    [user]="items" 
-    (deleteUser)="deleteUsers($event)">
-    </app-user-card>
+<div class="header-users">
+  <div class="header-users__items" *ngFor="let items of usersService.usersSubject| async">
+   
+    <app-user-card [user]="items" (deleteUser)="deleteUsers ($event)" (editUser)="editUser($event)"></app-user-card>
+ 
   </div>
 </div>
+
+<button mat-mini-fab  class="button" (click)="openCreateUserModal()" >
+        <mat-icon>add</mat-icon> 
+</button>
+
+

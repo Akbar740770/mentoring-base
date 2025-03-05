@@ -4,6 +4,13 @@ import { UsersApiService } from "../user-api.service";
 import { UsersService } from "../users.sevice";
 import { UserCardComponent } from "./user-card/user-card.component";
 import { CreateUserFormComponent } from "../create-user-form/create-user-form.component";
+import { MatIconModule } from "@angular/material/icon";
+import { MatDialog } from "@angular/material/dialog";
+import { CreateUserModalComponent } from "./create-user-modal/create-user-modal";
+import { MatButton, MatButtonModule } from "@angular/material/button";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
 export interface User{
   
     "id": number,
@@ -40,14 +47,20 @@ export interface User{
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.scss',
   standalone: true,
-  imports: [NgFor, UserCardComponent, AsyncPipe, CreateUserFormComponent],
+  imports: [
+    NgFor,
+    UserCardComponent,
+    AsyncPipe,
+    CreateUserFormComponent,
+    ReactiveFormsModule, MatInputModule,MatFormFieldModule,MatButtonModule,MatIconModule
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersListComponent {
   readonly UsersApiService = inject(UsersApiService);
   readonly usersService = inject(UsersService);
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
     this.UsersApiService.getUsers().subscribe((response: any) => {
       this.usersService.setUser(response);
     });
@@ -55,6 +68,15 @@ export class UsersListComponent {
 
   deleteUsers(id: number) {
     this.usersService.deleteUser(id);
+  }
+
+  editUser(user: any) {
+    this.usersService.editUser({
+      ...user,
+      company: {
+        name: user.companyName,
+      },
+    });
   }
 
   public createUser(formData: any) {
@@ -66,6 +88,17 @@ export class UsersListComponent {
       company: {
         name: formData.companyName,
       },
+    });
+  }
+
+
+  openCreateUserModal(): void {
+    const dialogRef = this.dialog.open(CreateUserModalComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+           this.usersService.createUser(result);
+      }
     });
   }
 }
