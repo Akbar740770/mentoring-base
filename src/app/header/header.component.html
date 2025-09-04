@@ -9,8 +9,8 @@
       <div class="header-nav-item">{{AboutCompany1}}</div>
       <div class="header-nav-item" *ngIf="isShowCatalog" >{{hiderItem3}}</div>
     </nav>
-    <button (click)="isShowCatalog = !isShowCatalog">Скрыть/Показать каталог</button>
-    <button type="button" (click)="changeMenuText()">Изменить текст</button>
+    <button (click)="isShowCatalog = !isShowCatalog" class="header-button-users" >Скрыть/Показать каталог</button>
+    <button type="button" (click)="changeMenuText()" class="header-button-users" >Изменить текст</button>
     <h5 style="margin-left: 50px;">Сегодняшняя дата: {{ today | data }}</h5>
   </div>
 
@@ -24,7 +24,20 @@
     </div>
     <div class="header-button">
       <button class="header-button-users" routerLink ="users" type="button">Пользователи</button>
-           <button class="header-button-users" routerLink ="todos" type="button">TODOS</button>
+      <button class="header-button-users" routerLink ="todos" type="button">TODOS</button>
+
+           
+  <div *ngIf="!(user$ | async)">
+    <button class="header-button-users" (click)="loginAsAdmin()" >Войти как админ</button>
+    <button class="header-button-users" (click)="loginAsUser()" routerLink ="users" >Войти как юзер</button>
+  </div>
+
+  <div *ngIf="user$ | async as user">
+    <button (click)="logout()" routerLink ="" class="header-button-users" >Выход</button>
+    <button *ngIf="user.isAdmin" routerLink="/admin-user" class="header-button-users" > 
+      Перейти в админку
+    </button>
+  </div>
 
     </div>
     <div class="header-korzina" >
