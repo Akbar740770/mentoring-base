@@ -29,7 +29,7 @@ export const userReducer = createReducer(
         users: [ ...state.users, payload.user],
     })),
 
-    on(UserActions.delete, (state, payload) =>({
+    on(UserActions.delete, (state, payload: { id: number }) => ({
         ...state,
         users: state.users.filter((user) => user.id !== payload.id),
     })),

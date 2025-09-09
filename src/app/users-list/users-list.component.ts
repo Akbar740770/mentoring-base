@@ -1,18 +1,18 @@
-import { AsyncPipe, NgFor } from "@angular/common";
-import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
-import { UsersApiService } from "../user-api.service";
-import { UserCardComponent } from "./user-card/user-card.component";
-import { CreateUserFormComponent } from "../create-user-form/create-user-form.component";
-import { MatIconModule } from "@angular/material/icon";
-import { MatDialog } from "@angular/material/dialog";
-import { CreateUserModalComponent } from "./create-user-modal/create-user-modal";
-import { MatButtonModule } from "@angular/material/button";
-import { ReactiveFormsModule } from "@angular/forms";
-import { MatInputModule } from "@angular/material/input";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { Store } from "@ngrx/store";
-import { UserActions } from "./store/user.actions";
-import { selectUsers } from "./store/users.selectors";
+import { AsyncPipe, NgFor } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { UsersApiService } from '../user-api.service';
+import { UserCardComponent } from './user-card/user-card.component';
+import { CreateUserFormComponent } from '../create-user-form/create-user-form.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateUserModalComponent } from './create-user-modal/create-user-modal';
+import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { Store } from '@ngrx/store';
+import { UserActions } from './store/user.actions';
+import { selectUsers } from './store/users.selectors';
 
 export interface User {
   id: number;
@@ -57,21 +57,16 @@ export interface User {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersListComponent {
-
-  
   private readonly store = inject(Store);
   readonly users$ = this.store.select(selectUsers);
   dialog = inject(MatDialog);
   private readonly UsersApiService = inject(UsersApiService);
 
   constructor() {
-    this.UsersApiService.getUsers().subscribe((response: any) => {
+    this.UsersApiService.getUsers().subscribe((response: User[]) => {
       this.store.dispatch(UserActions.set({ users: response }));
     });
   }
-
-
-  
 
   createUser(formData: any) {
     const user = {
@@ -91,8 +86,14 @@ export class UsersListComponent {
     this.store.dispatch(UserActions.delete({ id }));
   }
 
-  editUser(user: any) {
-    const updatedUser = {
+  editUser(user: {
+    id: number;
+    name: string;
+    email: string;
+    website: string;
+    companyName: string;
+  }) {
+    const updatedUser: User = {
       ...user,
       company: {
         name: user.companyName,
@@ -111,10 +112,4 @@ export class UsersListComponent {
       }
     });
   }
-
-
-
-
-  
 }
-

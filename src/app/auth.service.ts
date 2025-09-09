@@ -9,7 +9,7 @@ export interface AuthUser {
 @Injectable({providedIn: 'root'})
 export class AuthService {
 
-    userSubject = new BehaviorSubject<AuthUser | null>(null);
+    userSubject = new BehaviorSubject<AuthUser | undefined >(undefined );
     readonly user$ = this.userSubject.asObservable();
 
     loginAsAdmin():void {
@@ -23,15 +23,15 @@ export class AuthService {
     }
 
     logout(): void {
-        this.userSubject.next(null);
+        this.userSubject.next(undefined );
     }
 
     IsAdmin(): boolean {
-        const user = this.userSubject.value;
+        const user: AuthUser | undefined = this.userSubject.value;
         return user?.isAdmin === true;
     }
 
-    getCurrentUser(): AuthUser | null {
+    getCurrentUser(): AuthUser | undefined {
         return this.userSubject.value;
     }
 }

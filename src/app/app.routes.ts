@@ -6,13 +6,14 @@ import { TodosListComponent } from './todos-list/todos-list.component';
 import { AdminUserComponent } from './admin-user/admin-user.component';
 import { adminAuthGuard } from './guards/admin-auth.guard';
 
-
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'header', component: HeaderComponent },
   { path: 'users', component: UsersListComponent },
   { path: 'todos', component: TodosListComponent },
-  {  path: 'admin-user',
+  {
+    path: 'admin-user',
     component: AdminUserComponent,
-    canActivate: [adminAuthGuard]}
+    canActivate: [adminAuthGuard],
+  },
 ];
